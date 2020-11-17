@@ -1,21 +1,21 @@
 {
 	"manifest_version": 2,
-	"name": "Show CC",
-  "description": "Shows the cc address line in mail compose window",
-	"version": "2.1",
-	"author": "opto (Klaus Buecher)",
+	"name": "Manage Emails/ Nostalgy++",
+    "description": "Adds shortcuts to change folder, move/copy messages, with folder completion, and other utilities to archive or organise emails. User instructions at tools->addon settings->nostalgy++->  Nostalgy++ usage directions",
+	"version": "2.2.3",
+	"author": "Alain Frisch, opto (Klaus Buecher)",
 	"developer": {
-		"name": "opto (Klaus Buecher)"
+		"name": "Alain Frisch, opto (Klaus Buecher)"
 	},
  
 	"applications": {
 		"gecko": {
-			"id": "sc@opto.one",
-			"strict_min_version": "68.0"
+			"id": "nostalgy@opto.one",
+			"strict_min_version": "78.0"
 		}
 	},
 	"background": {
-		"scripts": ["sc-background.js"]
+		"scripts": ["me-background.js"]
 	  },
 	  "experiment_apis": {
 		"WindowListener": {
@@ -34,7 +34,24 @@
 			"script": "chrome/content/api/LegacyPrefs/implementation.js"
 		  
 		  }
+		},
+		"Utilities": {
+		  "schema": "chrome/content/api/Utilities/schema.json",
+		  "parent": {
+			"scopes": ["addon_parent"],
+			"paths": [["Utilities"]],
+			"script": "chrome/content/api/Utilities/implementation.js"
+		  
+		   }
 		}
-	  }
+		  },
+
+		  "icons" : { 
+			"16" : "chrome/content/skin/ico/QF16x16.png",
+			"32" : "chrome/content/skin/ico/quickfolders-Icon.png",
+			"64" : "chrome/content/skin/ico/QF64x64.png"
+		  }
+		
+
 }
                                                                                                                                                         
