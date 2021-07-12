@@ -422,7 +422,7 @@ var HeaderToolsLiteObj = {
       // HeaderToolsLiteObj.folder.deleteMessages(HeaderToolsLiteObj.list,null,noTrash,true,null,false);
       var cs = Components.classes["@mozilla.org/messenger/messagecopyservice;1"]
                          .getService(Components.interfaces.nsIMsgCopyService);
-      cs.CopyFileMessage(fileSpec, fol, null, false, flags, keys, HeaderToolsLiteObj.copyListener, msgWindow);
+      cs.copyFileMessage(fileSpec, fol, null, false, flags, keys, HeaderToolsLiteObj.copyListener, msgWindow);
     },
 
           onDataAvailable : function (aRequest, aInputStream, aOffset, aCount) {

@@ -17,7 +17,168 @@
         persist="screenX screenY width height">
 
   <vbox id="cnghdrs" flex="1">
-    <grid>
+
+<!--  -->
+    <html:table>
+      <html:thead>
+          <html:tr>
+              <html:th colspan="2">Message headers</html:th>
+          </html:tr>
+      </html:thead>
+      <html:tbody>
+          <html:tr>
+              <html:td>
+                <label  value="&subject;" class="tright" />
+
+                </html:td>
+              <html:td>  <html:input id="subBox" size = "70" /></html:td>
+          </html:tr>
+          <html:tr>
+              <html:td>
+                <label  value="&date;" class="tright" />
+  
+              </html:td>
+              <html:td>  
+                <hbox>
+                  <menulist id="date3">
+                  <menupopup>
+                    <menuitem label="" selected="true"  />
+                    <menuitem label="Mon" />
+                    <menuitem label="Tue" />
+                    <menuitem label="Wed" />
+                    <menuitem label="Thu" />
+                    <menuitem label="Fri" />
+                    <menuitem label="Sat" />
+                    <menuitem label="Sun" />
+                  </menupopup>
+                  </menulist>
+                  <html:input id="dateBox" />
+                </hbox>
+                       
+                </html:td>
+          </html:tr>
+          <html:tr>
+              <html:td>
+                <label value="&author;" class="tright" />
+ 
+
+              </html:td>
+              <html:td>  <html:input id="authBox" size = "70" /></html:td>
+          </html:tr>
+          <html:tr>
+              <html:td>
+                <label value="&recipients;" class="tright" />
+
+
+              </html:td>
+              <html:td>  <html:input id="recBox" size = "70" /></html:td>
+          </html:tr>
+
+          <html:tr>
+              <html:td>
+                <label value="&replyto;" class="tright" />
+
+
+              </html:td>
+              <html:td>  <html:input id="replytoBox" size = "70" /></html:td>
+          </html:tr>
+
+          <html:tr>
+              <html:td>
+                <label value="&mid;" class="tright" />
+
+
+              </html:td>
+              <html:td>  <html:input id="midBox" size = "70" /></html:td>
+          </html:tr>
+
+          <html:tr>
+              <html:td>
+                <label value="&refs;" class="tright" />
+
+
+              </html:td>
+              <html:td>  <html:input id="refBox" size = "70" /></html:td>
+          </html:tr>
+
+          </html:tbody>
+  </html:table>
+
+
+ <!-- 
+
+<hbox flex="1">
+
+  <vbox   flex="1">
+    <label  value="&subject;" class="hdrlabel" />
+<html:br/>
+<label  value="&date;" class="hdrlabel" />
+
+</vbox>
+
+<vbox   flex="1">
+  <html:input id="subBox"  />
+<html:br/>
+
+<html:input id="dateBox" />
+
+</vbox>
+
+</hbox>
+  <richlistbox flex="1">
+    <richlistitem/>
+  
+      <richlistitem>
+        <label for = "subBox"  value="&subject;" class="hdrlabel" />
+        <html:input id="subBox"  />
+
+
+      </richlistitem>
+
+
+      <richlistitem>
+        <label for = "dateBox" value="&date;" class="hdrlabel" />
+        <hbox>
+          <menulist id="date3">
+          <menupopup>
+            <menuitem label="" selected="true"  />
+            <menuitem label="Mon" />
+            <menuitem label="Tue" />
+            <menuitem label="Wed" />
+            <menuitem label="Thu" />
+            <menuitem label="Fri" />
+            <menuitem label="Sat" />
+            <menuitem label="Sun" />
+          </menupopup>
+          </menulist>
+          <html:input id="dateBox" />
+        </hbox>
+
+
+      </richlistitem>
+
+      <richlistitem>
+        <label value="&author;" class="tright" />
+        <html:input id="authBox" flex="1"/>
+ 
+
+      </richlistitem>
+
+      <richlistitem>
+        <label value="&recipients;" class="tright" />
+        <html:input id="recBox" flex="1"/>
+
+
+      </richlistitem>
+
+      <richlistitem>
+
+
+      </richlistitem>
+
+ 
+    </richlistbox>
+  <grid>
       <columns>
         <column />
         <column flex="1" />
@@ -67,6 +228,8 @@
         </row>
       </rows>
     </grid>
+
+  -->
   </vbox>
 
   <script type="application/x-javascript" src="chrome://hdrtoolslite/content/hdrtools.js"/>

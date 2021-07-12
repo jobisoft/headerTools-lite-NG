@@ -89,19 +89,12 @@ function onLoad(activatedWhileWindowOpen) {
 `, ["chrome://hdrtoolslite/locale/hdrtools.dtd"]);
 /**/
 console.log("messenger-headertoolslite");
-//window.getAttributeById("");
 
-/*   
-    window.QuickFolders.Util.logDebug('Adding Folder Listener...');
-    window.QuickFolders_mailSession.AddFolderListener(window.QuickFolders.FolderListener, Components.interfaces.nsIFolderListener.all);
-//   obsolete   window.QuickFolders.addLoadEventListener();
-    window.QuickFolders.initDelayed(window, WL);
-*/
+
 }
 
 function onUnload(isAddOnShutDown) {
     console.log("messenger-showCC unload");
-    window.onNostalgyUnload();
     Components.classes["@mozilla.org/xre/app-info;1"].
     getService(Components.interfaces.nsIXULRuntime).invalidateCachesOnRestart();
 }
