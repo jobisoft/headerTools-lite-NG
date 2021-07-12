@@ -1,21 +1,22 @@
 {
 	"manifest_version": 2,
-	"name": "Manage Emails/ Nostalgy++",
-    "description": "Adds shortcuts to change folder, move/copy messages, with folder completion, and other utilities to archive or organise emails. User instructions at tools->addon settings->nostalgy++->  Nostalgy++ usage directions",
-	"version": "2.2.3",
-	"author": "Alain Frisch, opto (Klaus Buecher)",
+	"name": "HeaderTools Lite",
+	"description": "Allows to modify the header and the source of messages",
+	"version": "3.1",
+	"author": "opto (Klaus Buecher)",
 	"developer": {
-		"name": "Alain Frisch, opto (Klaus Buecher)"
+		"name": "opto (Klaus Buecher), Paolo Kaosmos"
 	},
  
 	"applications": {
 		"gecko": {
-			"id": "nostalgy@opto.one",
-			"strict_min_version": "78.0"
+			"id": "hdrtoolslite@opto.one",
+			"strict_min_version": "78.0",
+			"strict_max_version": "91.*"
 		}
 	},
 	"background": {
-		"scripts": ["me-background.js"]
+		"scripts": ["he-background.js"]
 	  },
 	  "experiment_apis": {
 		"WindowListener": {

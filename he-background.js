@@ -40,14 +40,14 @@ messenger.runtime.onInstalled.addListener(async ({ reason, temporary }) => {
 
 
 async function main() {
-    messenger.WindowListener.registerDefaultPrefs("chrome/content/scripts/me-Defaults.js");
+    messenger.WindowListener.registerDefaultPrefs("chrome/content/scripts/hdrtoolprefs.js");
     
 
     messenger.WindowListener.registerChromeUrl([ 
-        ["content", "nostalgy", "chrome/content/"],
-        ["locale", "nostalgy", "en-US", "chrome/locale/en-US/"],
+        ["content", "hdrtoolslite", "chrome/content/"],
+        ["locale", "hdrtoolslite", "en-US", "chrome/locale/en-US/"]
   //      ["locale", "quickfolders", "ca", "chrome/locale/ca/"],
-        ["locale", "nostalgy", "de", "chrome/locale/de/"],
+ //       ["locale", "nostalgy", "de", "chrome/locale/de/"],
   /*      ["locale", "quickfolders", "es-MX", "chrome/locale/es-MX/"],
         ["locale", "quickfolders", "es", "chrome/locale/es/"],
         ["locale", "quickfolders", "fr", "chrome/locale/fr/"],
@@ -71,7 +71,7 @@ async function main() {
        ]);
 
  
-    messenger.WindowListener.registerOptionsPage("chrome://nostalgy/content/edit_prefs.xhtml"); 
+    messenger.WindowListener.registerOptionsPage("chrome://hdrtoolslite/content/settings.xhtml"); 
     
  //attention: each target window (like messenger.xul) can appear only once
  // this is different from chrome.manifest
@@ -79,10 +79,10 @@ async function main() {
     // messenger.WindowListener.registerWindow("chrome://messenger/content/messenger.xhtml", "chrome/content/scripts/qf-messenger.js");
 
  //   messenger.WindowListener.registerWindow("chrome://messenger/content/messenger.xul", "chrome/content/scripts/me-messenger.js");
-    messenger.WindowListener.registerWindow("chrome://messenger/content/messenger.xhtml", "chrome/content/scripts/me-messenger.js");
+    messenger.WindowListener.registerWindow("chrome://messenger/content/messenger.xhtml", "chrome/content/scripts/he-messenger.js");
 
     //messenger.WindowListener.registerWindow("chrome://messenger/content/messengercompose.xul", "chrome/content/scripts/qf-composer.js");
-    messenger.WindowListener.registerWindow("chrome://messenger/content/messengercompose/messengercompose.xhtml", "chrome/content/scripts/me-composer.js");
+  //  messenger.WindowListener.registerWindow("chrome://messenger/content/messengercompose/messengercompose.xhtml", "chrome/content/scripts/me-composer.js");
 /*
     messenger.WindowListener.registerWindow("chrome://messenger/content/FilterListDialog.xul", "chrome/content/scripts/qf-filterlist.js");
     messenger.WindowListener.registerWindow("chrome://messenger/content/FilterListDialog.xhtml", "chrome/content/scripts/qf-filterlist.js");
@@ -94,7 +94,7 @@ async function main() {
     messenger.WindowListener.registerWindow("chrome://messenger/content/customizeToolbar.xhtml", "chrome/content/scripts/qf-customizetoolbar.js");
 */
 //   messenger.WindowListener.registerWindow("chrome://messenger/content/messageWindow.xul", "chrome/content/scripts/me-messageWindow.js");
-    messenger.WindowListener.registerWindow("chrome://messenger/content/messageWindow.xhtml", "chrome/content/scripts/me-messageWindow.js");
+//    messenger.WindowListener.registerWindow("chrome://messenger/content/messageWindow.xhtml", "chrome/content/scripts/me-messageWindow.js");
   //  messenger.WindowListener.registerWindow("chrome://messenger/content/messageWindow.xhtml", "chrome/content/scripts/me-messenger.js");
 
  /* 
