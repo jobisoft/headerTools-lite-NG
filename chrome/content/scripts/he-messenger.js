@@ -14,19 +14,8 @@ Services.scriptloader.loadSubScript("chrome://hdrtoolslite/content/keysets.js", 
 /**/
 
 function onLoad(activatedWhileWindowOpen) {
-    console.log (Services.appinfo.version);
- /*
-    let layout = WL.injectCSS("chrome://quickfolders/content/quickfolders-layout.css");
-    layout.setAttribute("title", "QuickFolderStyles");
-    
-    let tb = WL.injectCSS("chrome://quickfolders/content/quickfolders-thunderbird.css");
-    // tb.setAttribute("title", "QuickFolderStyles");
-    
-    WL.injectCSS("chrome://quickfolders/content/skin/quickfolders-widgets.css");
-    WL.injectCSS("chrome://quickfolders/content/qf-foldertree.css");
-    WL.injectCSS("chrome://quickfolders/content/quickfolders-filters.css");
-    WL.injectCSS("chrome://quickfolders/content/quickfolders-68.css");
-*/
+  //  console.log (Services.appinfo.version);
+ 
     //WL.injectCSS("chrome://messenger/skin/input-fields.css");
 
     WL.injectElements(`
@@ -96,14 +85,14 @@ function onLoad(activatedWhileWindowOpen) {
  
 `, ["chrome://hdrtoolslite/locale/hdrtools.dtd"]);
 /**/
-console.log("messenger-headertoolslite");
+//console.log("messenger-headertoolslite");
 window.HeaderToolsLiteObj.onLoad();
 
 
 }
 
 function onUnload(isAddOnShutDown) {
-    console.log("messenger-showCC unload");
+//    console.log("messenger-showCC unload");
     Components.classes["@mozilla.org/xre/app-info;1"].
     getService(Components.interfaces.nsIXULRuntime).invalidateCachesOnRestart();
 }
