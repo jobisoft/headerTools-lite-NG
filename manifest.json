@@ -1,18 +1,17 @@
 {
 	"manifest_version": 2,
-	"name": "HeaderTools Lite",
+	"name": "HeaderTools Lite NG",
 	"description": "Allows to modify the header and the source of messages",
 	"version": "3.1",
 	"author": "opto (Klaus Buecher)",
 	"developer": {
-		"name": "opto (Klaus Buecher), Paolo Kaosmos"
+		"name": "opto (Klaus Buecher), Dillinger, Paolo Kaosmos"
 	},
  
 	"applications": {
 		"gecko": {
 			"id": "hdrtoolslite@opto.one",
-			"strict_min_version": "78.0",
-			"strict_max_version": "91.*"
+			"strict_min_version": "78.0"
 		}
 	},
 	"background": {
@@ -26,31 +25,11 @@
 			"paths": [["WindowListener"]],
 			"script": "chrome/content/api/WindowListener/implementation.js"
 		  }
-		},  
-		"LegacyPrefs": {
-		  "schema": "chrome/content/api/LegacyPrefs/schema.json",
-		  "parent": {
-			"scopes": ["addon_parent"],
-			"paths": [["LegacyPrefs"]],
-			"script": "chrome/content/api/LegacyPrefs/implementation.js"
-		  
-		  }
-		},
-		"Utilities": {
-		  "schema": "chrome/content/api/Utilities/schema.json",
-		  "parent": {
-			"scopes": ["addon_parent"],
-			"paths": [["Utilities"]],
-			"script": "chrome/content/api/Utilities/implementation.js"
-		  
-		   }
 		}
 		  },
 
 		  "icons" : { 
-			"16" : "chrome/content/skin/ico/QF16x16.png",
-			"32" : "chrome/content/skin/ico/quickfolders-Icon.png",
-			"64" : "chrome/content/skin/ico/QF64x64.png"
+			"32": "content/hdrtools32.png"
 		  }
 		
 

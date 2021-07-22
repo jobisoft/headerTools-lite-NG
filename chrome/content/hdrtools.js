@@ -7,12 +7,22 @@ so it shouldn't give any compatibility problems.
 var HeaderToolsLiteObj = {
 
   // global variables
+  TB_gt_78: true,
+  TB_version:"",
   folder : null,
   hdr : null,
   prefs : Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch),
   bundle : Components.classes["@mozilla.org/intl/stringbundle;1"].getService(Components.interfaces.nsIStringBundleService).createBundle("chrome://hdrtoolslite/locale/hdrtools.properties"),
 
   // called loading dialog for changing headers details
+  onLoad : function () {
+    let appInfo = Components.classes["@mozilla.org/xre/app-info;1"]
+    .getService(Components.interfaces.nsIXULAppInfo);
+    this.TB_gt_78 =( parseInt(appInfo.version.substring(0,2))  >78);
+console.log("appinfo", appInfo.version,( this.TB_gt_78));
+this.TB_version =appInfo.version ;
+
+  },
   initDialog : function() {
     document.addEventListener("dialogaccept", function() {HeaderToolsLiteObj.exitDialog(false)}); // This replaces ondialogaccept in XUL.
     document.addEventListener("dialogcancel", function() {HeaderToolsLiteObj.exitDialog(true)}); // This replaces ondialogcancel in XUL.
@@ -398,9 +408,17 @@ var HeaderToolsLiteObj = {
       var flags =  HeaderToolsLiteObj.hdr.flags;
       var keys =  HeaderToolsLiteObj.hdr.getStringProperty("keywords");
 
-      HeaderToolsLiteObj.list = Components.classes["@mozilla.org/array;1"].createInstance(Components.interfaces.nsIMutableArray);
-      HeaderToolsLiteObj.list.appendElement(HeaderToolsLiteObj.hdr, false);
+      if (! HeaderToolsLiteObj.TB_gt_78) //Components.interfaces.nsIMutableArray) 
+      {
+        HeaderToolsLiteObj.list = Components.classes["@mozilla.org/array;1"].createInstance(Components.interfaces.nsIMutableArray);
+        HeaderToolsLiteObj.list.appendElement(HeaderToolsLiteObj.hdr, false);
+          
+      }
 
+      else {
+      HeaderToolsLiteObj.list = [];//Components.classes["@mozilla.org/array;1"].createInstance(Components.interfaces.nsIMutableArray);
+      HeaderToolsLiteObj.list.push(HeaderToolsLiteObj.hdr); //appendElement(HeaderToolsLiteObj.hdr, false);
+      }
       // this is interesting: nsIMsgFolder.copyFileMessage seems to have a bug on Windows, when
       // the nsIFile has been already used by foStream (because of Windows lock system?), so we
       // must initialize another nsIFile object, pointing to the temporary file
@@ -422,7 +440,10 @@ var HeaderToolsLiteObj = {
       // HeaderToolsLiteObj.folder.deleteMessages(HeaderToolsLiteObj.list,null,noTrash,true,null,false);
       var cs = Components.classes["@mozilla.org/messenger/messagecopyservice;1"]
                          .getService(Components.interfaces.nsIMsgCopyService);
+      if (cs.copyFileMessage)   //TB 91                
       cs.copyFileMessage(fileSpec, fol, null, false, flags, keys, HeaderToolsLiteObj.copyListener, msgWindow);
+      else
+      cs.CopyFileMessage(fileSpec, fol, null, false, flags, keys, HeaderToolsLiteObj.copyListener, msgWindow);
     },
 
           onDataAvailable : function (aRequest, aInputStream, aOffset, aCount) {
@@ -447,8 +468,10 @@ var HeaderToolsLiteObj = {
     OnProgress: function (progress, progressMax) {},
     OnStartCopy: function () {},
     OnStopCopy: function (status) {
-      if (status == 0) // copy done
+      if (status == 0) {// copy done
         HeaderToolsLiteObj.folder.deleteMessages(HeaderToolsLiteObj.list,null,HeaderToolsLiteObj.noTrash,true,null,false);
+ //       this.postActions(HeaderToolsLiteObj.list[0].messageKey);
+      }
     },
     SetMessageKey: function (key) {
       // at this point, the message is already stored in local folders, but not yet in remote folders,
@@ -466,8 +489,12 @@ var HeaderToolsLiteObj = {
   },
 
   postActions : function(key) {
+    console.log("in postactions");
     gDBView.selectMsgByKey(key); // select message with modified headers/source
     var hdr = HeaderToolsLiteObj.folder.GetMessageHeader(key);
+    HeaderToolsLiteObj.folder.addKeywordsToMessages([hdr], keys);
+    //hdr.setStringProperty("keywords", keys);// need to process further, see tagbackup??
+
     if (hdr.flags & 2)
       HeaderToolsLiteObj.folder.addMessageDispositionState(hdr,0); //set replied if necessary
           if (hdr.flags & 4096)
@@ -477,6 +504,7 @@ var HeaderToolsLiteObj = {
   // used just for remote folders
   folderListener  : {
     OnItemAdded: function(parentItem, item, view) {
+      console.log("foldlist added", parentItem, item, view);
       try {
         var hdr = item.QueryInterface(Components.interfaces.nsIMsgDBHdr);
       }

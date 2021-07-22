@@ -1,17 +1,20 @@
 /*
- * License:  see License.txt
+
  * Code addtions for TB 78 or later: Creative Commons (CC BY-ND 4.0):
  *      Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) 
  
- * Contributors:  see Changes.txt
+ * Contributors:  Klaus Buecher/opto
  */
+
+
+https://www.paypal.com/donate?hosted_button_id=TZ9VBFHNNR5H6
 
 
 
 addEventListener("click", async (event) => {
 	if (event.target.id.startsWith("donate")) {
 
-	  messenger.Utilities.openLinkExternally("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2AKE2G2B9J3ZS");
+	  messenger.windows.openDefaultBrowser("https://www.paypal.com/donate?hosted_button_id=TZ9VBFHNNR5H6");
 	}
 });  
 

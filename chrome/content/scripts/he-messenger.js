@@ -1,4 +1,12 @@
-var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+/*
+
+ * Code addtions for TB 78 or later: Creative Commons (CC BY-ND 4.0):
+ *      Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) 
+ 
+ * Contributors:  Klaus Buecher/opto
+ */
+
+ var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
 
 Services.scriptloader.loadSubScript("chrome://hdrtoolslite/content/hdrtools.js", window, "UTF-8");
@@ -89,6 +97,7 @@ function onLoad(activatedWhileWindowOpen) {
 `, ["chrome://hdrtoolslite/locale/hdrtools.dtd"]);
 /**/
 console.log("messenger-headertoolslite");
+window.HeaderToolsLiteObj.onLoad();
 
 
 }
