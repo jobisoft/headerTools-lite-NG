@@ -19,7 +19,7 @@ var HeaderToolsLiteObj = {
     let appInfo = Components.classes["@mozilla.org/xre/app-info;1"]
     .getService(Components.interfaces.nsIXULAppInfo);
     this.TB_gt_78 =( parseInt(appInfo.version.substring(0,2))  >78);
-console.log("appinfo", appInfo.version,( this.TB_gt_78));
+//console.log("appinfo", appInfo.version,( this.TB_gt_78));
 this.TB_version =appInfo.version ;
 
   },
@@ -489,7 +489,7 @@ this.TB_version =appInfo.version ;
   },
 
   postActions : function(key) {
-    console.log("in postactions");
+  //  console.log("in postactions");
     gDBView.selectMsgByKey(key); // select message with modified headers/source
     var hdr = HeaderToolsLiteObj.folder.GetMessageHeader(key);
     HeaderToolsLiteObj.folder.addKeywordsToMessages([hdr], keys);
@@ -504,7 +504,7 @@ this.TB_version =appInfo.version ;
   // used just for remote folders
   folderListener  : {
     OnItemAdded: function(parentItem, item, view) {
-      console.log("foldlist added", parentItem, item, view);
+  //    console.log("foldlist added", parentItem, item, view);
       try {
         var hdr = item.QueryInterface(Components.interfaces.nsIMsgDBHdr);
       }

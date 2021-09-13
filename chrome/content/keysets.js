@@ -10,7 +10,9 @@ var HeaderToolsLiteKeys = {
       shortcut1 = prefs.getCharPref("extensions.hdrtoolslite.edit_shortcut");
       shortcut2 = prefs.getCharPref("extensions.hdrtoolslite.editFS_shortcut");
     }
-    catch(e) {console.log("shortcut error")}
+    catch(e) {
+      //console.log("shortcut error")
+    }
     if (shortcut1) {
       var key1 = document.createXULElement("key");
       key1.setAttribute("key", shortcut1);
