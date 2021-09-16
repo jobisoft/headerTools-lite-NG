@@ -26,3 +26,28 @@
   padding-bottom: 5px;
 }
 
+/* copied and adapted from import export tools */
+.groupbox-multi-os {
+  position: relative;
+  border-radius: 3px;
+  border-bottom: 2px groove ThreeDFace;
+  border-top: 2px groove ThreeDFace;
+  border-left: 2px groove ThreeDFace;
+  border-right: 2px groove ThreeDFace;
+  padding-right: 6px;
+  padding-left: 6px;
+  padding-top: 10px;
+  padding-bottom: 6px;
+}
+
+.groupbox-os-title {
+  margin-top: -22px;
+}
+
+.groupbox-os-label {
+  background-color: -moz-Dialog;
+  font-weight: normal;
+  margin-inline-start: 3px;
+  padding-right: 3px;
+  padding-left: 3px;
+}

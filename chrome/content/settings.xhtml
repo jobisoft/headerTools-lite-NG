@@ -1,44 +1,57 @@
 <?xml version="1.0"?>
+<!DOCTYPE dialog SYSTEM "chrome://hdrtoolslite/locale/hdrtools.dtd">
 
 <?xml-stylesheet type="text/css" href="chrome://global/skin/global.css"?>
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
-
-<!DOCTYPE dialog SYSTEM "chrome://hdrtoolslite/locale/hdrtools.dtd">
+<?xml-stylesheet type="text/css" href="chrome://hdrtoolslite/content/hdrtools.css"?>
 
 <dialog xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  buttons="accept, cancel" title="&prefTitle;" id="HTLsettings" onload="onLoad()" ondialogaccept="savePrefs();">
+	buttons="accept, cancel" title="&prefTitle;" id="HTLsettings" onload="onLoad()" ondialogaccept="savePrefs();"
+	style="padding:8px">
 
-  <script type="application/x-javascript" src="chrome://hdrtoolslite/content/settings.js" />
-
-<groupbox>
-	<caption label="&misc;" />
-	<hbox align="center">
-		<checkbox id="delOrig" label="&trashOption;"/>
-	</hbox>
-	<hbox align="center">
-		<checkbox id="imapFix" label="&imapFix;"/>
-	</hbox>
-	<hbox align="center">
-		<checkbox id="addHTLheader" label="&addHTLheader;"/>
-	</hbox>
-	<hbox align="center">
-		<label value="&maxchars;" />
-		<html:input  id="maxFSchars" size="8" />
-	</hbox>
-	<label value="&nolimit;" />
-</groupbox>
-<spacer height="20px" />
-<groupbox>
-	<caption label="&shortcuts;" />
-	<hbox align="center">
-		<label value="&shortCut; Shift +"/>
-		<html:input id="shortcutBox1" size="1" maxlength="1" />
-	</hbox>
-	<hbox align="center">
-		<label value="&shortCutFS; Shift +"/>
-		<html:input id="shortcutBox2" size="1" maxlength="1" />
-	</hbox>
-	<label value="&shortCutWarn;" />
-</groupbox>
-  <spacer height="10px" />
+	<script type="application/x-javascript" src="chrome://hdrtoolslite/content/settings.js" />
+	
+	<!--
+	/**
+	 * support for caption was dropped, see 
+	 * https://developer.thunderbird.net/add-ons/updating/tb68/changes#less-than-groupbox-greater-than-and-less-than-caption-greater-than
+	 * 
+	 * using styles copied import export tools
+	 */ 
+	-->
+	<groupbox class="groupbox-multi-os" style="margin-top: 8px;">
+		<hbox class="groupbox-os-title">
+			<label class="groupbox-os-label">&misc;</label>
+		</hbox>
+		<hbox align="center">
+			<checkbox id="delOrig" label="&trashOption;" />
+		</hbox>
+		<hbox align="center">
+			<checkbox id="imapFix" label="&imapFix;" />
+		</hbox>
+		<hbox align="center">
+			<checkbox id="addHTLheader" label="&addHTLheader;" />
+		</hbox>
+		<hbox align="center">
+			<label value="&maxchars;" />
+			<html:input id="maxFSchars" size="8" />
+		</hbox>
+		<label value="&nolimit;" />
+	</groupbox>
+	<spacer height="20px" />
+	<groupbox class="groupbox-multi-os" style="margin-top: 8px;">
+		<hbox class="groupbox-os-title">
+			<label class="groupbox-os-label">&shortcuts;</label>
+		</hbox>
+		<hbox align="center">
+			<label value="&shortCut; Shift +" />
+			<html:input id="shortcutBox1" size="1" maxlength="1" />
+		</hbox>
+		<hbox align="center">
+			<label value="&shortCutFS; Shift +" />
+			<html:input id="shortcutBox2" size="1" maxlength="1" />
+		</hbox>
+		<label value="&shortCutWarn;" />
+	</groupbox>
+	<spacer height="8px" />
 </dialog>
