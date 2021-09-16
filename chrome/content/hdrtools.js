@@ -9,6 +9,8 @@ var HeaderToolsLiteObj = {
   // global variables
   folder: null,
   hdr: null,
+  TB_gt_78: true,
+  TB_version:"",
   prefs: Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch),
   bundle: Components.classes["@mozilla.org/intl/stringbundle;1"].getService(Components.interfaces.nsIStringBundleService).createBundle("chrome://hdrtoolslite/locale/hdrtools.properties"),
 
@@ -392,9 +394,21 @@ var HeaderToolsLiteObj = {
 
       var flags = HeaderToolsLiteObj.hdr.flags;
       var keys = HeaderToolsLiteObj.hdr.getStringProperty("keywords");
+  
+      var cs = Components.classes["@mozilla.org/messenger/messagecopyservice;1"]
+        .getService(Components.interfaces.nsIMsgCopyService);
 
-      HeaderToolsLiteObj.list = [];
-      HeaderToolsLiteObj.list.push(HeaderToolsLiteObj.hdr);
+      if (!cs.copyFileMessage)   //TB 91 //Components.interfaces.nsIMutableArray) 
+      {
+        HeaderToolsLiteObj.list = Components.classes["@mozilla.org/array;1"].createInstance(Components.interfaces.nsIMutableArray);
+        HeaderToolsLiteObj.list.appendElement(HeaderToolsLiteObj.hdr, false);
+          
+      }
+
+      else {
+      HeaderToolsLiteObj.list = [];//Components.classes["@mozilla.org/array;1"].createInstance(Components.interfaces.nsIMutableArray);
+      HeaderToolsLiteObj.list.push(HeaderToolsLiteObj.hdr); //appendElement(HeaderToolsLiteObj.hdr, false);
+      }
 
       // this is interesting: nsIMsgFolder.copyFileMessage seems to have a bug on Windows, when
       // the nsIFile has been already used by foStream (because of Windows lock system?), so we
@@ -415,8 +429,6 @@ var HeaderToolsLiteObj = {
       HeaderToolsLiteObj.noTrash = !(HeaderToolsLiteObj.prefs.getBoolPref("extensions.hdrtoolslite.putOriginalInTrash"))
       // Moved in copyListener.onStopCopy
       // HeaderToolsLiteObj.folder.deleteMessages(HeaderToolsLiteObj.list,null,noTrash,true,null,false);
-      var cs = Components.classes["@mozilla.org/messenger/messagecopyservice;1"]
-        .getService(Components.interfaces.nsIMsgCopyService);
       if (cs.copyFileMessage)   //TB 91                
         cs.copyFileMessage(fileSpec, fol, null, false, flags, keys, HeaderToolsLiteObj.copyListener, msgWindow);
       else
@@ -507,7 +519,12 @@ var HeaderToolsLiteObj = {
   init: function () {
 		var shortcut1, shortcut2 = null;
 	//console.log("start init");
-  	try {
+  let appInfo = Components.classes["@mozilla.org/xre/app-info;1"]
+  .getService(Components.interfaces.nsIXULAppInfo);
+  this.TB_gt_78 =( parseInt(appInfo.version.substring(0,2))  >78);
+//console.log("appinfo", appInfo.version,( this.TB_gt_78));
+  this.TB_version =appInfo.version ;
+  try {
 			shortcut1 = HeaderToolsLiteObj.prefs.getStringPref("extensions.hdrtoolslite.edit_shortcut");
 			shortcut2 = HeaderToolsLiteObj.prefs.getStringPref("extensions.hdrtoolslite.editFS_shortcut");
 		}
