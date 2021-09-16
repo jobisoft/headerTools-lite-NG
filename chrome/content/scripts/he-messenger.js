@@ -6,7 +6,7 @@
  * Contributors:  Klaus Buecher/opto
  */
 
- var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
 
 Services.scriptloader.loadSubScript("chrome://hdrtoolslite/content/hdrtools.js", window, "UTF-8");
@@ -14,10 +14,10 @@ Services.scriptloader.loadSubScript("chrome://hdrtoolslite/content/hdrtools.js",
 
 function onLoad(activatedWhileWindowOpen) {
   //  console.log (Services.appinfo.version);
- 
-    //WL.injectCSS("chrome://messenger/skin/input-fields.css");
 
-    WL.injectElements(`
+  //WL.injectCSS("chrome://messenger/skin/input-fields.css");
+
+  WL.injectElements(`
  
  
  <keyset id="mailKeys">
@@ -83,15 +83,15 @@ function onLoad(activatedWhileWindowOpen) {
     
  
 `, ["chrome://hdrtoolslite/locale/hdrtools.dtd"]);
-/**/
-//console.log("messenger-headertoolslite");
-window.HeaderToolsLiteObj.init();
+  /**/
+  //console.log("messenger-headertoolslite");
+  window.HeaderToolsLiteObj.init();
 
 
 }
 
 function onUnload(isAddOnShutDown) {
-//    console.log("messenger-showCC unload");
-    Components.classes["@mozilla.org/xre/app-info;1"].
+  //    console.log("messenger-showCC unload");
+  Components.classes["@mozilla.org/xre/app-info;1"].
     getService(Components.interfaces.nsIXULRuntime).invalidateCachesOnRestart();
 }

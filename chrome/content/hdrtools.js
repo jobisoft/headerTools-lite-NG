@@ -267,7 +267,7 @@ var HeaderToolsLiteObj = {
         for (var i = 1; i < refs; i++)
           newHdr.ref = newHdr.ref + " <" + HeaderToolsLiteObj.hdr.getStringReference(i) + ">";
 
-        window.openDialog('chrome://hdrtoolslite/content/cnghdrs.xhtml', "", "chrome,modal,centerscreen ", newHdr);
+        window.openDialog('chrome://hdrtoolslite/content/cnghdrs.xhtml', "", "chrome,modal,centerscreen,resizable ", newHdr);
 
         if (newHdr.cancel)
           return;
@@ -393,8 +393,20 @@ var HeaderToolsLiteObj = {
       var flags = HeaderToolsLiteObj.hdr.flags;
       var keys = HeaderToolsLiteObj.hdr.getStringProperty("keywords");
 
-      HeaderToolsLiteObj.list = [];
-      HeaderToolsLiteObj.list.push(HeaderToolsLiteObj.hdr);
+      var cs = Components.classes["@mozilla.org/messenger/messagecopyservice;1"]
+      .getService(Components.interfaces.nsIMsgCopyService);
+
+    if (!cs.copyFileMessage)   //TB 91 //Components.interfaces.nsIMutableArray) 
+    {
+      HeaderToolsLiteObj.list = Components.classes["@mozilla.org/array;1"].createInstance(Components.interfaces.nsIMutableArray);
+      HeaderToolsLiteObj.list.appendElement(HeaderToolsLiteObj.hdr, false);
+        
+    }
+
+    else {
+    HeaderToolsLiteObj.list = [];//Components.classes["@mozilla.org/array;1"].createInstance(Components.interfaces.nsIMutableArray);
+    HeaderToolsLiteObj.list.push(HeaderToolsLiteObj.hdr); //appendElement(HeaderToolsLiteObj.hdr, false);
+    }
 
       // this is interesting: nsIMsgFolder.copyFileMessage seems to have a bug on Windows, when
       // the nsIFile has been already used by foStream (because of Windows lock system?), so we
@@ -415,8 +427,6 @@ var HeaderToolsLiteObj = {
       HeaderToolsLiteObj.noTrash = !(HeaderToolsLiteObj.prefs.getBoolPref("extensions.hdrtoolslite.putOriginalInTrash"))
       // Moved in copyListener.onStopCopy
       // HeaderToolsLiteObj.folder.deleteMessages(HeaderToolsLiteObj.list,null,noTrash,true,null,false);
-      var cs = Components.classes["@mozilla.org/messenger/messagecopyservice;1"]
-        .getService(Components.interfaces.nsIMsgCopyService);
       if (cs.copyFileMessage)   //TB 91                
         cs.copyFileMessage(fileSpec, fol, null, false, flags, keys, HeaderToolsLiteObj.copyListener, msgWindow);
       else

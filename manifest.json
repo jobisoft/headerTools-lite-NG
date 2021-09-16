@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Header Tools Lite",
 	"description": "Allows to modify the header and the source of messages.",
-	"version": "1.5.2",
+	"version": "1.5.3",
 	"author": "opto (Klaus Buecher)",
 	"developer": {
 		"name": "opto (Klaus Buecher), Paolo Kaosmos"
@@ -10,7 +10,7 @@
 	"applications": {
 		"gecko": {
 			"id": "headerToolsLite@kaosmos.nnp",
-			"strict_min_version": "91.0",
+			"strict_min_version": "78.0",
 			"strict_max_version": "91.*"
 		}
 	},
