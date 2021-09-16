@@ -15,13 +15,13 @@
 
   <hbox align="center">
     <label value="&mailCharset;" />
-    <html:input id="charsetBox" />
+    <html:input id="charsetBox" type="text" />
     <spacer flex="1" />
     <button id="FS_button" label="&showComplete;" oncommand="HeaderToolsLiteObj.showFullSource()" collapsed="true" />
     <label id="sourcePercent" value="&percent;" />
   </hbox>
   <spacer height="10px" />
-  <vbox style="overflow: auto;" id="editFSbox" flex="1">>
+  <vbox style="overflow: auto;" id="FSeditbox" flex="1">>
     <html:textarea id="editFSarea" flex="1" />
   </vbox>
 

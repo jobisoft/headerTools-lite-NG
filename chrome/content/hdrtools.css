@@ -10,7 +10,7 @@
   width: 25%;
 }
 
-#editFSbox {
+#FSeditbox {
   width: 750px;
   height: 425px;
   display: flex;
@@ -25,3 +25,4 @@
 #HTLdialog1new {
   padding-bottom: 5px;
 }
+
