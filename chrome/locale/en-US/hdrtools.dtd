@@ -1,7 +1,7 @@
 <!ENTITY extName "Header Tools Lite">
 <!ENTITY changeDetails  "Change header details">
 <!ENTITY fullSource "Edit full source">
-<!ENTITY prefTitle "Header Tools Lite - Options">
+<!ENTITY prefTitle "Header Tools Lite options">
 <!ENTITY trashOption "Put original message in Trash folder">
 <!ENTITY date "Date: ">
 <!ENTITY subject "Subject: ">
@@ -12,7 +12,7 @@
 <!ENTITY addHTLheader "Add X-HeaderToolsLite header">
 <!ENTITY shortCut "Shortcut to change header details:">
 <!ENTITY shortCutFS "Shortcut to edit full source:">
-<!ENTITY shortCutWarn "Restart Thunderbird to apply changes to the shortcuts">
+<!ENTITY shortCutWarn "Restart Thunderbird to apply the changes of shortcuts">
 <!ENTITY misc "Miscellaneous">
 <!ENTITY shortcuts "Shortcuts">
 <!ENTITY maxchars "Maximum number of characters to display when you edit the full source: ">
@@ -22,3 +22,7 @@
 <!ENTITY percent "Part of message loaded: §&#37;">
 <!ENTITY mid "Message-ID: ">
 <!ENTITY refs "References: ">
+<!ENTITY aKey1 "H">
+<!ENTITY aKey2 "h">
+<!ENTITY aKey3 "s">
+

@@ -1,13 +1,12 @@
 {
 	"manifest_version": 2,
 	"name": "Header Tools Lite",
-	"description": "Allows to modify the header and the source of messages",
-	"version": "1.5.1",
+	"description": "Allows to modify the header and the source of messages.",
+	"version": "1.5.2",
 	"author": "opto (Klaus Buecher)",
 	"developer": {
 		"name": "opto (Klaus Buecher), Paolo Kaosmos"
 	},
- 
 	"applications": {
 		"gecko": {
 			"id": "headerToolsLite@kaosmos.nnp",
@@ -16,19 +15,24 @@
 		}
 	},
 	"background": {
-		"scripts": ["he-background.js"]
-	  },
-	  "experiment_apis": {
+		"scripts": [
+			"he-background.js"
+		]
+	},
+	"experiment_apis": {
 		"WindowListener": {
-		  "schema": "chrome/content/api/WindowListener/schema.json",
-		  "parent": {
-			"scopes": ["addon_parent"],
-			"paths": [["WindowListener"]],
-			"script": "chrome/content/api/WindowListener/implementation.js"
-		  }
+			"schema": "chrome/content/api/WindowListener/schema.json",
+			"parent": {
+				"scopes": [
+					"addon_parent"
+				],
+				"paths": [
+					[
+						"WindowListener"
+					]
+				],
+				"script": "chrome/content/api/WindowListener/implementation.js"
+			}
 		}
-		  }
-		
-
+	}
 }
-                                                                                                                                                        

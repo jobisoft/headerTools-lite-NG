@@ -5,16 +5,12 @@
 <?xml-stylesheet type="text/css" href="chrome://hdrtoolslite/content/hdrtools.css"?>
 
 <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml"
-  buttons="accept, cancel" 
-  onload="HeaderToolsLiteObj.initDialog();" 
-  title="&extName; - &changeDetails;"
-  orient="vertical" flex="1" 
-  id="HTLdialog1new" persist="screenX screenY width height">
+  buttons="accept, cancel" onload="HeaderToolsLiteObj.initDialog();" title="&extName; - &changeDetails;"
+  orient="vertical" flex="1" id="HTLdialog1new" persist="screenX screenY">
 
   <script type="application/x-javascript" src="chrome://hdrtoolslite/content/hdrtools.js" />
 
-
-  <vbox id="cnghdrs" flex="1">
+  <vbox flex="1" >
 
     <!--  -->
     <html:table>
@@ -114,9 +110,6 @@
       </html:tbody>
     </html:table>
 
-
-  
   </vbox>
-
 
 </dialog>

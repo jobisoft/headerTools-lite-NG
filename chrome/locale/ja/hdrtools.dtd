@@ -22,3 +22,7 @@
 <!ENTITY percent "読み込み: §&#37;">
 <!ENTITY mid "Message-ID: ">
 <!ENTITY refs "References: ">
+<!ENTITY aKey1 "H">
+<!ENTITY aKey2 "h">
+<!ENTITY aKey3 "s">
+

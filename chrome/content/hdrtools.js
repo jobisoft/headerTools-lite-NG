@@ -9,8 +9,6 @@ var HeaderToolsLiteObj = {
   // global variables
   folder: null,
   hdr: null,
-  TB_gt_78: true,
-  TB_version:"",
   prefs: Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch),
   bundle: Components.classes["@mozilla.org/intl/stringbundle;1"].getService(Components.interfaces.nsIStringBundleService).createBundle("chrome://hdrtoolslite/locale/hdrtools.properties"),
 
@@ -70,8 +68,8 @@ var HeaderToolsLiteObj = {
 
   // called loading dialog for editing full source, that is in window.arguments[0].value
   initDialog2: function () {
-    document.addEventListener("dialogaccept", function () { HeaderToolsLiteObj.exitDialog2(false) }); 
-    document.addEventListener("dialogcancel", function () { HeaderToolsLiteObj.exitDialog2(true) }); 
+    document.addEventListener("dialogaccept", function () { HeaderToolsLiteObj.exitDialog2(false) });
+    document.addEventListener("dialogcancel", function () { HeaderToolsLiteObj.exitDialog2(true) });
     document.getElementById("editFSarea").focus();
     var limit = HeaderToolsLiteObj.prefs.getIntPref("extensions.hdrtoolslite.fullsource_maxchars");
     HeaderToolsLiteObj.full = window.arguments[0].value.length;
@@ -269,7 +267,7 @@ var HeaderToolsLiteObj = {
         for (var i = 1; i < refs; i++)
           newHdr.ref = newHdr.ref + " <" + HeaderToolsLiteObj.hdr.getStringReference(i) + ">";
 
-        window.openDialog('chrome://hdrtoolslite/content/cnghdrs.xhtml', "", "chrome,modal,centerscreen,resizable ", newHdr);
+        window.openDialog('chrome://hdrtoolslite/content/cnghdrs.xhtml', "", "chrome,modal,centerscreen ", newHdr);
 
         if (newHdr.cancel)
           return;
@@ -281,10 +279,10 @@ var HeaderToolsLiteObj = {
         var newAuthEnc = mimeEncoder.encodeMimePartIIStr_UTF8(newHdr.author, true, "UTF-8", 0, 72);
         var newRecEnc = mimeEncoder.encodeMimePartIIStr_UTF8(newHdr.recipients, true, "UTF-8", 0, 72);
         if (newHdr.replyto)
-        var newReplytoEnc = mimeEncoder.encodeMimePartIIStr_UTF8(newHdr.replyto, true, "UTF-8", 0, 72);
+          var newReplytoEnc = mimeEncoder.encodeMimePartIIStr_UTF8(newHdr.replyto, true, "UTF-8", 0, 72);
         else
-        var newReplytoEnc = null;
-//opto
+          var newReplytoEnc = null;
+        //opto
         var data = HeaderToolsLiteObj.cleanCRLF(HeaderToolsLiteObj.listener.text);
         var endHeaders = data.search(/\r\n\r\n/);
         var headers = data.substring(0, endHeaders);
@@ -336,14 +334,14 @@ var HeaderToolsLiteObj = {
         else if (newHdr.ref) // header missing
           headers = headers + ("References: " + newHdr.ref + "\r\n");
         if (newReplytoEnc) {
-        if (headers.indexOf("\nReply-To:") > -1)
-        headers = headers.replace(/\nReply-To: *.*\r\n/, "\nReply-To: "+newHdr.replyto+"\r\n");
-        else if (headers.indexOf("\nreply-to:") > -1)
-        headers = headers.replace(/\nreply-to: *.*\r\n/, "\nreply-to: "+newHdr.replyto+"\r\n");
-        else // header missing
-        headers = headers+("Reply-To: "+newHdr.replyto+"\r\n");
+          if (headers.indexOf("\nReply-To:") > -1)
+            headers = headers.replace(/\nReply-To: *.*\r\n/, "\nReply-To: " + newHdr.replyto + "\r\n");
+          else if (headers.indexOf("\nreply-to:") > -1)
+            headers = headers.replace(/\nreply-to: *.*\r\n/, "\nreply-to: " + newHdr.replyto + "\r\n");
+          else // header missing
+            headers = headers + ("Reply-To: " + newHdr.replyto + "\r\n");
         }
-//opto
+        //opto
         // strips off characters added in line 292
         headers = headers.substring(1, headers.length - 2);
         data = headers + data.substring(endHeaders);
@@ -394,21 +392,9 @@ var HeaderToolsLiteObj = {
 
       var flags = HeaderToolsLiteObj.hdr.flags;
       var keys = HeaderToolsLiteObj.hdr.getStringProperty("keywords");
-  
-      var cs = Components.classes["@mozilla.org/messenger/messagecopyservice;1"]
-        .getService(Components.interfaces.nsIMsgCopyService);
 
-      if (!cs.copyFileMessage)   //TB 91 //Components.interfaces.nsIMutableArray) 
-      {
-        HeaderToolsLiteObj.list = Components.classes["@mozilla.org/array;1"].createInstance(Components.interfaces.nsIMutableArray);
-        HeaderToolsLiteObj.list.appendElement(HeaderToolsLiteObj.hdr, false);
-          
-      }
-
-      else {
-      HeaderToolsLiteObj.list = [];//Components.classes["@mozilla.org/array;1"].createInstance(Components.interfaces.nsIMutableArray);
-      HeaderToolsLiteObj.list.push(HeaderToolsLiteObj.hdr); //appendElement(HeaderToolsLiteObj.hdr, false);
-      }
+      HeaderToolsLiteObj.list = [];
+      HeaderToolsLiteObj.list.push(HeaderToolsLiteObj.hdr);
 
       // this is interesting: nsIMsgFolder.copyFileMessage seems to have a bug on Windows, when
       // the nsIFile has been already used by foStream (because of Windows lock system?), so we
@@ -429,6 +415,8 @@ var HeaderToolsLiteObj = {
       HeaderToolsLiteObj.noTrash = !(HeaderToolsLiteObj.prefs.getBoolPref("extensions.hdrtoolslite.putOriginalInTrash"))
       // Moved in copyListener.onStopCopy
       // HeaderToolsLiteObj.folder.deleteMessages(HeaderToolsLiteObj.list,null,noTrash,true,null,false);
+      var cs = Components.classes["@mozilla.org/messenger/messagecopyservice;1"]
+        .getService(Components.interfaces.nsIMsgCopyService);
       if (cs.copyFileMessage)   //TB 91                
         cs.copyFileMessage(fileSpec, fol, null, false, flags, keys, HeaderToolsLiteObj.copyListener, msgWindow);
       else
@@ -478,10 +466,10 @@ var HeaderToolsLiteObj = {
   },
 
   postActions: function (key) {
-     gDBView.selectMsgByKey(key); // select message with modified headers/source
+    gDBView.selectMsgByKey(key); // select message with modified headers/source
     var hdr = HeaderToolsLiteObj.folder.GetMessageHeader(key);
-    HeaderToolsLiteObj.folder.addKeywordsToMessages([hdr], keys);
-    //hdr.setStringProperty("keywords", keys);// need to process further, see tagbackup??
+    HeaderToolsLiteObj.folder.addKeywordsToMessages([hdr], key);
+    //hdr.setStringProperty("keywords", key);// need to process further, see tagbackup??
 
     if (hdr.flags & 2)
       HeaderToolsLiteObj.folder.addMessageDispositionState(hdr, 0); //set replied if necessary
@@ -517,44 +505,39 @@ var HeaderToolsLiteObj = {
   },
 
   init: function () {
-		var shortcut1, shortcut2 = null;
-	//console.log("start init");
-  let appInfo = Components.classes["@mozilla.org/xre/app-info;1"]
-  .getService(Components.interfaces.nsIXULAppInfo);
-  this.TB_gt_78 =( parseInt(appInfo.version.substring(0,2))  >78);
-//console.log("appinfo", appInfo.version,( this.TB_gt_78));
-  this.TB_version =appInfo.version ;
-  try {
-			shortcut1 = HeaderToolsLiteObj.prefs.getStringPref("extensions.hdrtoolslite.edit_shortcut");
-			shortcut2 = HeaderToolsLiteObj.prefs.getStringPref("extensions.hdrtoolslite.editFS_shortcut");
-		}
-		catch (e) { };
-		if (shortcut1) {
-			var key1 = document.createXULElement("key");
-			key1.setAttribute("key", shortcut1);
-			key1.setAttribute("modifiers", "shift");
-			key1.setAttribute("id", "headerToolsLightkey1");
-			key1.setAttribute("command", "headerToolsLightedit");
-			document.getElementById("headerToolsLightkeyset").appendChild(key1);
-//			document.getElementById("headerToolsLightModify1").setAttribute("key", "headerToolsLightkey1");
-		}
-		if (shortcut2) {
-			var key2 = document.createXULElement("key");
-			key2.setAttribute("key", shortcut2);
-			key2.setAttribute("modifiers", "shift");
-			key2.setAttribute("id", "headerToolsLightkey2");
-			key2.setAttribute("command", "headerToolsLighteditFS");
-			document.getElementById("headerToolsLightkeyset").appendChild(key2);
-//			document.getElementById("headerToolsLightModify2").setAttribute("key", "headerToolsLightkey2");
-		}
- //   console.log("end init");
-  }, 
+    var shortcut1, shortcut2 = null;
+    //console.log("start init");
+    try {
+      shortcut1 = HeaderToolsLiteObj.prefs.getStringPref("extensions.hdrtoolslite.edit_shortcut");
+      shortcut2 = HeaderToolsLiteObj.prefs.getStringPref("extensions.hdrtoolslite.editFS_shortcut");
+    }
+    catch (e) { };
+    if (shortcut1) {
+      var key1 = document.createXULElement("key");
+      key1.setAttribute("key", shortcut1);
+      key1.setAttribute("modifiers", "shift");
+      key1.setAttribute("id", "headerToolsLightkey1");
+      key1.setAttribute("command", "headerToolsLightedit");
+      document.getElementById("headerToolsLightkeyset").appendChild(key1);
+      //			document.getElementById("headerToolsLightModify1").setAttribute("key", "headerToolsLightkey1");
+    }
+    if (shortcut2) {
+      var key2 = document.createXULElement("key");
+      key2.setAttribute("key", shortcut2);
+      key2.setAttribute("modifiers", "shift");
+      key2.setAttribute("id", "headerToolsLightkey2");
+      key2.setAttribute("command", "headerToolsLighteditFS");
+      document.getElementById("headerToolsLightkeyset").appendChild(key2);
+      //			document.getElementById("headerToolsLightModify2").setAttribute("key", "headerToolsLightkey2");
+    }
+    //   console.log("end init");
+  },
 
   showSettings: function () {
-    window.openDialog("chrome://hdrtoolslite/content/settings.xhtml", "chrome");
+    window.openDialog("chrome://hdrtoolslite/content/settings.xhtml", "chrome, centerscreen");
   }
 };
 
 
 
-window.addEventListener("load", function() {HeaderToolsLiteObj.init()}, false);
+window.addEventListener("load", function () { HeaderToolsLiteObj.init() }, false);
