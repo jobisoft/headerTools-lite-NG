@@ -1,7 +1,7 @@
-<!ENTITY extName "HeaderTools Lite">
+<!ENTITY extName "Header Tools Lite">
 <!ENTITY changeDetails  "Change header details">
 <!ENTITY fullSource "Edit full source">
-<!ENTITY prefTitle "HeaderTools Lite - Options">
+<!ENTITY prefTitle "Header Tools Lite - Options">
 <!ENTITY trashOption "Put original message in Trash folder">
 <!ENTITY date "Date: ">
 <!ENTITY subject "Subject: ">
@@ -19,6 +19,6 @@
 <!ENTITY mailCharset "Message charset: ">
 <!ENTITY showComplete "Show complete source">
 <!ENTITY nolimit "(The value of -1 means 'no limit')">
-<!ENTITY percent "Loaded: §&#37;">
+<!ENTITY percent "Part of message loaded: §&#37;">
 <!ENTITY mid "Message-ID: ">
 <!ENTITY refs "References: ">

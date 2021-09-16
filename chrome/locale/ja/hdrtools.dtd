@@ -1,7 +1,7 @@
-<!ENTITY extName "HeaderTools Lite">
+<!ENTITY extName "Header Tools Lite">
 <!ENTITY changeDetails "ヘッダ情報の変更">
 <!ENTITY fullSource "ソース編集">
-<!ENTITY prefTitle "HeaderTools Lite 設定">
+<!ENTITY prefTitle "Header Tools Lite 設定">
 <!ENTITY trashOption "オリジナルのメッセージをごみ箱に入れる">
 <!ENTITY date "日時: ">
 <!ENTITY subject "件名: ">

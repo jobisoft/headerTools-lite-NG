@@ -29,6 +29,12 @@
   padding-inline-start: 2px;
 }
 
+
+#sourcePercent {
+
+	font-weight: bold
+}
+
 .hdrlabel {
   width: 25%;
 }

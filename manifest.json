@@ -2,16 +2,16 @@
 	"manifest_version": 2,
 	"name": "Header Tools Lite",
 	"description": "Allows to modify the header and the source of messages",
-	"version": "3.1.1",
+	"version": "1.5.1",
 	"author": "opto (Klaus Buecher)",
 	"developer": {
-		"name": "opto (Klaus Buecher), Dillinger, Paolo Kaosmos"
+		"name": "opto (Klaus Buecher), Paolo Kaosmos"
 	},
  
 	"applications": {
 		"gecko": {
 			"id": "headerToolsLite@kaosmos.nnp",
-			"strict_min_version": "78.0",
+			"strict_min_version": "91.0",
 			"strict_max_version": "91.*"
 		}
 	},
@@ -27,10 +27,6 @@
 			"script": "chrome/content/api/WindowListener/implementation.js"
 		  }
 		}
-		  },
-
-		  "icons" : { 
-			"32": "chrome/content/hdrtools32.png"
 		  }
 		
 

@@ -14,8 +14,12 @@
         id="HTLdialog2"
         persist="screenX screenY width height">
 
+
+ <script type="application/x-javascript" src="chrome://hdrtoolslite/content/hdrtools.js"/>
+
+
 <hbox align="center">
-  <label value="&mailCharset;" /><textbox id="charsetBox" />
+  <label value="&mailCharset;" /><html:input id="charsetBox" />
   <spacer flex="1" />
   <button id="FS_button" label="&showComplete;" oncommand="HeaderToolsLiteObj.showFullSource()" collapsed="true" />
   <label id="sourcePercent" value="&percent;" />
@@ -25,6 +29,5 @@
   <html:textarea id="editFSarea" flex="1" />
 </vbox>
 
-<script type="application/x-javascript" src="chrome://hdrtoolslite/content/hdrtools.js"/>
 
 </dialog>

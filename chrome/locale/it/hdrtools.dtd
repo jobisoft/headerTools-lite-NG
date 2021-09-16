@@ -1,7 +1,7 @@
-<!ENTITY extName "HeaderTools Lite">
+<!ENTITY extName "Header Tools Lite">
 <!ENTITY changeDetails  "Modificare le intestazioni">
 <!ENTITY fullSource "Modificare sorgente del messaggio">
-<!ENTITY prefTitle "Opzioni di HeaderTools Lite">
+<!ENTITY prefTitle "Opzioni di Header Tools Lite">
 <!ENTITY trashOption "Mettere il messaggio originale nel Cestino">
 <!ENTITY date "Data: ">
 <!ENTITY subject "Oggetto: ">

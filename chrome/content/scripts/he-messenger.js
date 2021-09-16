@@ -10,7 +10,6 @@
 
 
 Services.scriptloader.loadSubScript("chrome://hdrtoolslite/content/hdrtools.js", window, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://hdrtoolslite/content/keysets.js", window, "UTF-8");
 /**/
 
 function onLoad(activatedWhileWindowOpen) {
@@ -86,7 +85,7 @@ function onLoad(activatedWhileWindowOpen) {
 `, ["chrome://hdrtoolslite/locale/hdrtools.dtd"]);
 /**/
 //console.log("messenger-headertoolslite");
-window.HeaderToolsLiteObj.onLoad();
+window.HeaderToolsLiteObj.init();
 
 
 }
