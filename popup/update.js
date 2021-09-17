@@ -13,8 +13,8 @@
 
 addEventListener("click", async (event) => {
 	if (event.target.id.startsWith("donate")) {
-
-	}	  messenger.windows.openDefaultBrowser("https://www.paypal.com/donate?hosted_button_id=TZ9VBFHNNR5H6");
+		messenger.windows.openDefaultBrowser("https://www.paypal.com/donate?hosted_button_id=TZ9VBFHNNR5H6");
+	}
 
 });  
 
